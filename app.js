@@ -2,6 +2,10 @@ const express = require('express');
 const logger = require('morgan');
 const cors = require('cors');
 
+// const dotenv = require('dotenv');
+// dotenv.config();
+require('dotenv').config(); // сокращення запись
+
 const contactsRouter = require('./routes/api/contacts');
 
 const app = express();
