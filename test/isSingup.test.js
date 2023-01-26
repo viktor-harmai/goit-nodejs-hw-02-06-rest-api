@@ -1,62 +1,27 @@
-// // ответ должен иметь статус-код 200
-// // в ответе должен возвращаться токен
-// // в ответе должен возвращаться объект user с 2 полями email и subscription, имеющие тип данных String
+// ответ должен иметь статус-код 200
+// в ответе должен возвращаться токен
+// в ответе должен возвращаться объект user с 2 полями email и subscription, имеющие тип данных String
+// const express = require('express');
+const request = require('supertest');
+const { auth } = require('../controllers');
+const app = require('../app');
 
-// const mongoose = require('mongoose');
+// app.post('/api/users/signup', auth.register);
 
-// const request = require('supertest');
-// require('dotenv').config();
-// const app = require('../app');
-// const { User } = require('../models/user');
+describe('test register controller', () => {
+  // beforeAll(() => {
+  //   app.listen(3000);
+  //   console.log('Выполнить в начале тестов');
+  // });
 
-// const { DB_TEST_HOST, PORT } = process.env;
+  // afterAll(() => {
+  //   app.close();
+  //   console.log('Выполнить после тестов');
+  // });
 
-// describe('test auth routes', () => {
-//   let server;
-//   beforeAll(() => (server = app.listen(PORT)));
-//   afterAll(() => server.close());
-
-//   beforeEach(done => {
-//     mongoose.connect(DB_TEST_HOST).then(() => done());
-//   });
-
-//   // afterEach(done => {
-//   //   jest.setTimeout(
-//   //     mongoose.connection.db.dropCollection(() => {
-//   //       mongoose.connection.close(() => done());
-//   //     }),
-//   //     10000
-//   //   );
-//   // });
-
-//   test('test signup route', async () => {
-//     const newUser = {
-//       name: 'Some',
-//       email: 'Some@gmail.com',
-//       password: '123456',
-//       avatarURL: 'www.gravatar.com/avatar/4eb96ccd126aa5d7fc61c2fcc6915402',
-//     };
-//     const user = await User.create(newUser);
-
-//     const loginUser = {
-//       email: 'Some@gmail.com',
-//       password: '123456',
-//     };
-
-//     const response = await request(app).post('/api/auth/login').send(loginUser);
-
-//     const expected = {
-//       status: 'success',
-//       code: 200,
-//       data: {
-//         token,
-//         user: {
-//           email,
-//           subscription,
-//         },
-//       },
-//     };
-
-//     expect(response.statusCode).toBe(expected.code);
-//   });
-// });
+  test('register return ', async () => {
+    const response = await request(app).post('/api/users/signup');
+    expect(response.status).toBe(200);
+    // console.log(response.status);
+  });
+});
