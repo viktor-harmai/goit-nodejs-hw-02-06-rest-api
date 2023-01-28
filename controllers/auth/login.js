@@ -1,5 +1,5 @@
 const { User } = require('../../models');
-const { Unauthorized } = require('http-errors');
+const { BadRequest, Unauthorized } = require('http-errors');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
@@ -10,13 +10,14 @@ const login = async (req, res) => {
   const user = await User.findOne({ email });
   const { subscription } = user;
 
-  // console.log(user);
-  // console.log(subscription);
-
   const pasCompare = bcrypt.compareSync(password, user.password);
 
   if (!user || !pasCompare) {
     throw new Unauthorized('Email or password is wrong');
+  }
+
+  if (!user.verify) {
+    throw new BadRequest('Email not verify');
   }
 
   const payload = {
