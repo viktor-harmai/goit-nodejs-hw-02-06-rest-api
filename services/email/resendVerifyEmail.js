@@ -1,5 +1,5 @@
 const { User } = require('../../models');
-const { sendEmail } = require('../../middlewares');
+const { sendEmail } = require('./sendEmail');
 const { BadRequest, NotFound } = require('http-errors');
 
 const { BASE_URL } = process.env;

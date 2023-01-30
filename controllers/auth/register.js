@@ -1,7 +1,7 @@
 const { User } = require('../../models');
 const bcrypt = require('bcryptjs');
 const gravatar = require('gravatar');
-const { sendEmail } = require('../../middlewares');
+const { sendEmail } = require('../../services/email');
 const { nanoid } = require('nanoid');
 const { Conflict } = require('http-errors');
 
